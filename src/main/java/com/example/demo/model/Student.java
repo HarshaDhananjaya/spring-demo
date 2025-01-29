@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -21,5 +23,13 @@ public class Student {
     private UUID id;
     private String name;
     private String email;
-    private String gender;
+    private Integer gender;
+    private LocalDate dob;
+    @Transient
+    private Integer age;
+
+    public Integer getAge() {
+        return Period.between(dob, LocalDate.now()).getYears();
+    }
+
 }
